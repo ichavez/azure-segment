@@ -7,6 +7,8 @@ var EventHubClient = require('azure-event-hubs').Client
 var app = express()
 var rest = expressRest(app)
 
+var port = process.env.PORT || 1337;
+var baseHost = process.env.WEBSITE_HOSTNAME || 'localhost';
 var client = EventHubClient.fromConnectionString(process.env.EVENT_HUB, process.env.EVENT_HUB_NAME)
 
 var sender = null
@@ -28,13 +30,12 @@ client.createSender()
     sender = tx
     sender.on('errorReceived', function (err) { console.error(err) })
 
-    var port = process.env.PORT || 8080
-
-    app.listen(8080, function (err) {
+    app.listen(port, baseHost, function (err) {
       if(err){
         console.error(err)
       }
-      console.log('Listening on port 8080!');
+      
+      console.log('Listening on port ' + port + '!')
     })
 
   })
