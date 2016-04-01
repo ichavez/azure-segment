@@ -18,6 +18,11 @@ rest.post('/analytics', function(req, rest) {
 
 })
 
+rest.get('/test', function(req, rest) {
+  rest.ok({"hello":"world!"})
+})
+
+
 client.createSender()
   .then(function (tx) {
     sender = tx
