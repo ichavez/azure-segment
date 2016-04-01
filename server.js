@@ -28,11 +28,11 @@ client.createSender()
     sender = tx
     sender.on('errorReceived', function (err) { console.error(err) })
 
-    app.listen(3000, function (err) {
+    app.listen(8080, function (err) {
       if(err){
         console.error(err)
       }
-      console.log('Listening on port 3000!');
+      console.log('Listening on port 8080!');
     })
 
   })
